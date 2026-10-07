@@ -709,7 +709,7 @@ const EVENTS_DATA = {
     },
     {
       "id": "bandai-card-games-fest-dallas",
-      "country": "US",
+      "country": "NA",
       "name": "BANDAI CARD GAMES FEST 26-27 feat. ONE PIECE CARD GAME DALLAS",
       "videoId": "8_qQk40PsKI",
       "thumb": "https://i.ytimg.com/vi/8_qQk40PsKI/maxresdefault.jpg",
@@ -718,7 +718,7 @@ const EVENTS_DATA = {
           "id": "d1",
           "round": "Round 1",
           "start": 2125,
-          "winner": null,
+          "winner": Boa Hancock (OP14-041),
           "p1": {
             "leader": "Yellow-Purple Nico Robin (OP09-062)",
             "aka": "ロビン ニコ・ロビン 黄紫"
