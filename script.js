@@ -708,6 +708,244 @@ const EVENTS_DATA = {
       ]
     },
     {
+      "id": "bandai-card-games-fest-dallas",
+      "country": "US",
+      "name": "BANDAI CARD GAMES FEST 26-27 feat. ONE PIECE CARD GAME DALLAS",
+      "videoId": "8_qQk40PsKI",
+      "thumb": "https://i.ytimg.com/vi/8_qQk40PsKI/maxresdefault.jpg",
+      "matches": [
+        {
+          "id": "d1",
+          "round": "Round 1",
+          "start": 2125,
+          "winner": null,
+          "p1": {
+            "leader": "Yellow-Purple Nico Robin (OP09-062)",
+            "aka": "ロビン ニコ・ロビン 黄紫"
+          },
+          "p2": {
+            "leader": "Boa Hancock (OP14-041)",
+            "aka": "ハンコック ボア・ハンコック 青黄 Boa"
+          },
+          "end": 4854
+        },
+        {
+          "id": "d2",
+          "round": "Round 2",
+          "start": 4854,
+          "winner": null,
+          "p1": {
+            "leader": "Rocks.D.Xebec (OP17-039)",
+            "aka": "ロックス ロックス・D・ジーベック ジーベック Xebec Rocks 青"
+          },
+          "p2": {
+            "leader": "Charlotte Pudding (OP08-058)",
+            "aka": "プリン シャーロット・プリン Pudding 紫黄"
+          },
+          "end": 8236
+        },
+        {
+          "id": "d3",
+          "round": "Round 3",
+          "start": 8236,
+          "winner": null,
+          "p1": {
+            "leader": "Red-Black Sabo (OP13-004)",
+            "aka": "サボ 赤黒"
+          },
+          "p2": {
+            "leader": "Yellow Enel (OP05-098)",
+            "aka": "エネル 黄"
+          },
+          "end": 10989
+        },
+        {
+          "id": "d4",
+          "round": "Round 4",
+          "start": 10989,
+          "winner": null,
+          "p1": {
+            "leader": "Purple Enel (OP15-058)",
+            "aka": "エネル 紫"
+          },
+          "p2": {
+            "leader": "Green Mihawk (OP14-020)",
+            "aka": "ミホーク 緑"
+          },
+          "end": 14087
+        },
+        {
+          "id": "d5",
+          "round": "Round 5",
+          "start": 14087,
+          "winner": null,
+          "p1": {
+            "leader": "Red-Green Luffy & Ace (ST30-001)",
+            "aka": "エース ルフィ 赤緑 RG Luffy & Ace ルフィ&エース"
+          },
+          "p2": {
+            "leader": "Red-Black Sabo (OP13-004)",
+            "aka": "サボ 赤黒"
+          },
+          "end": 16595
+        },
+        {
+          "id": "d6",
+          "round": "Round 6",
+          "start": 16595,
+          "winner": null,
+          "p1": {
+            "leader": "Yellow-Purple Nico Robin (OP09-062)",
+            "aka": "ロビン ニコ・ロビン 黄紫"
+          },
+          "p2": {
+            "leader": "Edward.Newgate (OP17-001)",
+            "aka": "白ひげ ニューゲート ホワイトビアード Whitebeard Newgate 赤"
+          },
+          "end": 19505
+        },
+        {
+          "id": "d7",
+          "round": "Round 7",
+          "start": 19505,
+          "winner": null,
+          "p1": {
+            "leader": "Black Luffy (OP17-079)",
+            "aka": "ルフィ 黒 Black Luffy"
+          },
+          "p2": {
+            "leader": "Green Mihawk (OP14-020)",
+            "aka": "ミホーク 緑"
+          },
+          "end": 22784
+        },
+        {
+          "id": "d8",
+          "round": "Round 8",
+          "start": 22784,
+          "winner": null,
+          "p1": {
+            "leader": "Yellow-Purple Nico Robin (OP09-062)",
+            "aka": "ロビン ニコ・ロビン 黄紫"
+          },
+          "p2": {
+            "leader": "Green Mihawk (OP14-020)",
+            "aka": "ミホーク 緑"
+          },
+          "end": 25574
+        },
+        {
+          "id": "d9",
+          "round": "Round 9",
+          "start": 25574,
+          "winner": null,
+          "p1": {
+            "leader": "Red-Black Sabo (OP13-004)",
+            "aka": "サボ 赤黒"
+          },
+          "p2": {
+            "leader": "Red-Black Sabo (OP13-004)",
+            "aka": "サボ 赤黒"
+          }
+        },
+        {
+          "id": "d10",
+          "round": "Top 32",
+          "start": 521,
+          "winner": null,
+          "p1": {
+            "leader": "Red-Green Luffy & Ace (ST30-001)",
+            "aka": "エース ルフィ 赤緑 RG Luffy & Ace ルフィ&エース"
+          },
+          "p2": {
+            "leader": "Charlotte Pudding (OP08-058)",
+            "aka": "プリン シャーロット・プリン Pudding 紫黄"
+          },
+          "videoId": "q21V-CbMmdI",
+          "end": 4874
+        },
+        {
+          "id": "d11",
+          "round": "Top 16",
+          "start": 4874,
+          "winner": null,
+          "p1": {
+            "leader": "Rocks.D.Xebec (OP17-039)",
+            "aka": "ロックス ロックス・D・ジーベック ジーベック Xebec Rocks 青"
+          },
+          "p2": {
+            "leader": "Red-Black Sabo (OP13-004)",
+            "aka": "サボ 赤黒"
+          },
+          "videoId": "q21V-CbMmdI",
+          "end": 10287
+        },
+        {
+          "id": "d12",
+          "round": "Top 8",
+          "start": 10287,
+          "winner": null,
+          "p1": {
+            "leader": "Red-Black Sabo (OP13-004)",
+            "aka": "サボ 赤黒"
+          },
+          "p2": {
+            "leader": "Purple Enel (OP15-058)",
+            "aka": "エネル 紫"
+          },
+          "videoId": "q21V-CbMmdI",
+          "end": 14945
+        },
+        {
+          "id": "d13",
+          "round": "Top 4",
+          "start": 14945,
+          "winner": null,
+          "p1": {
+            "leader": "Purple Enel (OP15-058)",
+            "aka": "エネル 紫"
+          },
+          "p2": {
+            "leader": "Purple Enel (OP15-058)",
+            "aka": "エネル 紫"
+          },
+          "videoId": "q21V-CbMmdI",
+          "end": 19813
+        },
+        {
+          "id": "d14",
+          "round": "3rd Place Match",
+          "start": 19813,
+          "winner": null,
+          "p1": {
+            "leader": "Purple Enel (OP15-058)",
+            "aka": "エネル 紫"
+          },
+          "p2": {
+            "leader": "Rocks.D.Xebec (OP17-039)",
+            "aka": "ロックス ロックス・D・ジーベック ジーベック Xebec Rocks 青"
+          },
+          "videoId": "q21V-CbMmdI",
+          "end": 24727
+        },
+        {
+          "id": "d15",
+          "round": "Grand Finals",
+          "start": 24727,
+          "winner": null,
+          "p1": {
+            "leader": "Green Mihawk (OP14-020)",
+            "aka": "ミホーク 緑"
+          },
+          "p2": {
+            "leader": "Purple Enel (OP15-058)",
+            "aka": "エネル 紫"
+          },
+          "videoId": "q21V-CbMmdI"
+        }
+      ]
+    },
+    {
       "id": "shumai-tenryu-test",
       "bar": false,
       "name": "Shumai Cup / Tenryu Cup (test)",
