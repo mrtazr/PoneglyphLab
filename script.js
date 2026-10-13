@@ -946,6 +946,74 @@ const EVENTS_DATA = {
       ]
     },
     {
+      "id": "championship-26-27-season-2-3on3-autumn",
+      "country": "JP",
+      "name": "ONE PIECEカードゲーム チャンピオンシップ26-27 Season 2 3on3 Autumn",
+      "videoId": "jYFZ1WSq2vQ",
+      "thumb": "https://i.ytimg.com/vi/jYFZ1WSq2vQ/maxresdefault.jpg",
+      "matches": [
+        {
+          "id": "c1",
+          "round": "Round 1",
+          "start": 1500,
+          "winner": 1,
+          "p1": {
+            "leader": "Purple Kaido (OP17-058)",
+            "aka": "カイドウ 紫"
+          },
+          "p2": {
+            "leader": "Rocks.D.Xebec (OP17-039)",
+            "aka": "ロックス ロックス・D・ジーベック ジーベック Xebec Rocks 青"
+          },
+          "end": 4540
+        },
+        {
+          "id": "c2",
+          "round": "Round 2",
+          "start": 4540,
+          "winner": 1,
+          "p1": {
+            "leader": "Red-Green Luffy (OP13-001)",
+            "aka": "ルフィ 赤緑 RG Luffy"
+          },
+          "p2": {
+            "leader": "Purple Enel (OP15-058)",
+            "aka": "エネル 紫"
+          },
+          "end": 7350
+        },
+        {
+          "id": "c3",
+          "round": "Round 3",
+          "start": 7350,
+          "winner": null,
+          "p1": {
+            "leader": "Rocks.D.Xebec (OP17-039)",
+            "aka": "ロックス ロックス・D・ジーベック ジーベック Xebec Rocks 青"
+          },
+          "p2": {
+            "leader": "Rocks.D.Xebec (OP17-039)",
+            "aka": "ロックス ロックス・D・ジーベック ジーベック Xebec Rocks 青"
+          },
+          "end": 10185
+        },
+        {
+          "id": "c4",
+          "round": "Round 4",
+          "start": 10185,
+          "winner": 1,
+          "p1": {
+            "leader": "Purple Kaido (OP17-058)",
+            "aka": "カイドウ 紫"
+          },
+          "p2": {
+            "leader": "Red-Black Sabo (OP13-004)",
+            "aka": "サボ 赤黒"
+          }
+        }
+      ]
+    },
+    {
       "id": "shumai-tenryu-test",
       "bar": false,
       "name": "Shumai Cup / Tenryu Cup (test)",
