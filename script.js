@@ -986,7 +986,7 @@ const EVENTS_DATA = {
           "id": "c3",
           "round": "Round 3",
           "start": 7350,
-          "winner": null,
+          "winner": 1,
           "p1": {
             "leader": "Rocks.D.Xebec (OP17-039)",
             "aka": "ロックス ロックス・D・ジーベック ジーベック Xebec Rocks 青"
