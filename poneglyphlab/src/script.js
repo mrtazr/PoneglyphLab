@@ -709,7 +709,7 @@ const EVENTS_DATA = {
     },
     {
       "id": "bandai-card-games-fest-dallas",
-      "country": "NA",
+      "country": "US",
       "name": "BANDAI CARD GAMES FEST 26-27 feat. ONE PIECE CARD GAME DALLAS",
       "videoId": "8_qQk40PsKI",
       "thumb": "https://i.ytimg.com/vi/8_qQk40PsKI/maxresdefault.jpg",
@@ -718,7 +718,7 @@ const EVENTS_DATA = {
           "id": "d1",
           "round": "Round 1",
           "start": 2125,
-          "winner": Boa Hancock (OP14-041),
+          "winner": null,
           "p1": {
             "leader": "Yellow-Purple Nico Robin (OP09-062)",
             "aka": "ロビン ニコ・ロビン 黄紫"
@@ -1003,7 +1003,7 @@ const EVENTS_DATA = {
     side1: $("side1"), side2: $("side2"), center: $("matchCenter"),
     spoiler: $("spoilerToggle"), spoilerState: $("spoilerState"),
     surprise: $("surpriseBtn"), prev: $("prevBtn"), next: $("nextBtn"),
-    copy: $("copyBtn"), fs: $("fsBtn"), stage: $("stage"), placeholder: $("placeholder"),
+    copy: $("copyBtn"), fs: $("fsBtn"), draw: $("drawBtn"), stage: $("stage"), placeholder: $("placeholder"),
     eventCards: $("eventCards"), playlist: $("playlist"), picker: $("leaderPicker"),
     search: $("searchInput"), leaderSel: $("leaderSelect"), oppSel: $("opponentSelect"),
     clear: $("clearBtn"), total: $("totalCount"), toast: $("toast"),
@@ -1215,6 +1215,7 @@ const EVENTS_DATA = {
   }
 
   function select(e, m, { play = true, push = true } = {}) {
+    drawOff(false);
     evIdx = e; mIdx = m;
     setView("watch");
     playlistOpen.add(evIdx);
@@ -1276,6 +1277,7 @@ const EVENTS_DATA = {
     els.watchView.hidden = v !== "watch";
   }
   function showHome() {
+    drawOff(false);
     if (yt && yt.pauseVideo) try { yt.pauseVideo(); } catch {}
     setView("home");
     history.replaceState(null, "", location.pathname);
@@ -1299,6 +1301,129 @@ const EVENTS_DATA = {
     try { await navigator.clipboard.writeText(new URL(location.href).toString()); toast("Link copied"); }
     catch { toast("Couldn't copy — copy it from the address bar"); }
   }
+  // ---------- draw tool ----------
+  const dr = { on: false, tool: "arrow", color: "#ff4d4f", strokes: [], cur: null, resume: false };
+  const DRAW_COLORS = ["#ff4d4f", "#ffd43b", "#4dd4ff", "#ffffff"];
+  const cv = mk("canvas", { className: "draw-canvas" });
+  const bar = mk("aside", { className: "draw-bar", hidden: true });
+  const hint = mk("aside", { className: "draw-hint", hidden: true, textContent: "⏸ Video paused while you draw" });
+  els.stage.append(cv, bar, hint);
+  const ctx = cv.getContext("2d");
+  const toolBtns = {}, dotBtns = [];
+  const sep = () => mk("span", { className: "db-sep" });
+  [["pen", "✏️ Pen"], ["arrow", "↗ Arrow"], ["circle", "◯ Circle"]].forEach(([t, label]) => {
+    const b = mk("button", { className: "db", type: "button", textContent: label });
+    b.addEventListener("click", () => { dr.tool = t; syncBar(); });
+    toolBtns[t] = b; bar.append(b);
+  });
+  bar.append(sep());
+  DRAW_COLORS.forEach((c) => {
+    const b = mk("button", { className: "db-dot", type: "button", title: "Color" });
+    b.style.background = c;
+    b.addEventListener("click", () => { dr.color = c; syncBar(); });
+    dotBtns.push([c, b]); bar.append(b);
+  });
+  bar.append(sep());
+  const undoBtn = mk("button", { className: "db", type: "button", textContent: "↶ Undo" });
+  const clearBtn = mk("button", { className: "db", type: "button", textContent: "🗑 Clear" });
+  const doneBtn = mk("button", { className: "db", type: "button", textContent: "✕ Done" });
+  undoBtn.addEventListener("click", drawUndo);
+  clearBtn.addEventListener("click", () => { dr.strokes = []; redraw(); syncBar(); });
+  doneBtn.addEventListener("click", () => drawOff());
+  bar.append(undoBtn, clearBtn, doneBtn);
+
+  function syncBar() {
+    Object.entries(toolBtns).forEach(([t, b]) => b.classList.toggle("on", t === dr.tool));
+    dotBtns.forEach(([c, b]) => b.classList.toggle("on", c === dr.color));
+    undoBtn.disabled = clearBtn.disabled = !dr.strokes.length;
+  }
+  function fit() {
+    const dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    redraw();
+  }
+  function redraw() {
+    ctx.clearRect(0, 0, cv.clientWidth, cv.clientHeight);
+    dr.strokes.forEach(paintStroke);
+    if (dr.cur) paintStroke(dr.cur);
+  }
+  function paintStroke(s) {
+    const w = cv.clientWidth, h = cv.clientHeight, lw = Math.max(3, w * 0.006);
+    ctx.strokeStyle = ctx.fillStyle = s.color; ctx.lineWidth = lw; ctx.lineCap = ctx.lineJoin = "round";
+    const P = s.pts.map(([x, y]) => [x * w, y * h]);
+    if (s.tool === "pen") {
+      ctx.beginPath();
+      P.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+      if (P.length === 1) ctx.lineTo(P[0][0] + 0.1, P[0][1]);
+      ctx.stroke();
+    } else if (P.length > 1) {
+      const a = P[0], b = P[P.length - 1];
+      if (s.tool === "circle") {
+        ctx.beginPath();
+        ctx.ellipse((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, Math.abs(b[0] - a[0]) / 2, Math.abs(b[1] - a[1]) / 2, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      } else {
+        const ang = Math.atan2(b[1] - a[1], b[0] - a[0]), hl = lw * 4.5;
+        ctx.beginPath(); ctx.moveTo(a[0], a[1]);
+        ctx.lineTo(b[0] - Math.cos(ang) * hl * 0.6, b[1] - Math.sin(ang) * hl * 0.6); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(b[0], b[1]);
+        ctx.lineTo(b[0] - hl * Math.cos(ang - 0.45), b[1] - hl * Math.sin(ang - 0.45));
+        ctx.lineTo(b[0] - hl * Math.cos(ang + 0.45), b[1] - hl * Math.sin(ang + 0.45));
+        ctx.closePath(); ctx.fill();
+      }
+    }
+  }
+  const drawPt = (e) => {
+    const r = cv.getBoundingClientRect();
+    return [Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (e.clientY - r.top) / r.height))];
+  };
+  cv.addEventListener("pointerdown", (e) => {
+    if (!dr.on || e.button > 0) return;
+    e.preventDefault();
+    try { cv.setPointerCapture(e.pointerId); } catch {}
+    dr.cur = { tool: dr.tool, color: dr.color, pts: [drawPt(e)] };
+  });
+  cv.addEventListener("pointermove", (e) => {
+    if (!dr.cur) return;
+    const p = drawPt(e);
+    if (dr.cur.tool === "pen") dr.cur.pts.push(p); else dr.cur.pts[1] = p;
+    redraw();
+  });
+  const endStroke = () => {
+    if (!dr.cur) return;
+    const s = dr.cur; dr.cur = null;
+    const a = s.pts[0], b = s.pts[s.pts.length - 1];
+    const tiny = Math.hypot((b[0] - a[0]) * cv.clientWidth, (b[1] - a[1]) * cv.clientHeight) < 4;
+    if (s.tool === "pen" || !tiny) dr.strokes.push(s);
+    redraw(); syncBar();
+  };
+  cv.addEventListener("pointerup", endStroke);
+  cv.addEventListener("pointercancel", endStroke);
+  function drawUndo() { dr.strokes.pop(); redraw(); syncBar(); }
+  function drawOn() {
+    if (view !== "watch" || dr.on) return;
+    dr.on = true; dr.resume = false;
+    try { dr.resume = !!(yt && yt.getPlayerState && yt.getPlayerState() === 1); if (yt && yt.pauseVideo) yt.pauseVideo(); } catch {}
+    els.stage.classList.add("drawing"); bar.hidden = false; hint.hidden = false; els.draw.classList.add("on");
+    fit(); syncBar();
+  }
+  function drawOff(resume = true) {
+    if (!dr.on) return;
+    dr.on = false; dr.strokes = []; dr.cur = null;
+    els.stage.classList.remove("drawing"); bar.hidden = true; hint.hidden = true; els.draw.classList.remove("on");
+    redraw();
+    if (resume && dr.resume) { try { yt.playVideo(); } catch {} }
+  }
+  if (typeof ResizeObserver !== "undefined") new ResizeObserver(() => { if (dr.on) fit(); }).observe(els.stage);
+  els.draw.addEventListener("click", () => (dr.on ? drawOff() : drawOn()));
+  document.addEventListener("keydown", (e) => {
+    if (!dr.on) return;
+    if (e.key === "Escape") drawOff();
+    else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") { e.preventDefault(); drawUndo(); }
+  });
+
   function fullscreen() {
     if (document.fullscreenElement) document.exitFullscreen();
     else els.stage.requestFullscreen?.();
