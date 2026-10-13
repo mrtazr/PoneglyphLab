@@ -202,3 +202,19 @@ select {
 .leader-picker.wide .lp { width: 118px; padding: 7px; }
 .leader-picker.wide .lp-name { font-size: 12px; }
 .leader-picker.wide .lp-set { font-size: 11px; }
+
+/* ---- draw tool ---- */
+.draw-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; z-index: 2; touch-action: none; cursor: crosshair; }
+.stage.drawing .draw-canvas { display: block; }
+.draw-bar { position: absolute; top: 12px; left: 10px; right: 10px; margin: 0 auto; width: fit-content; z-index: 3; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; padding: 8px 10px; background: rgba(11, 20, 36, .92); border: 1px solid var(--gold); border-radius: 12px; box-shadow: 0 6px 24px rgba(0, 0, 0, .5); }
+.draw-bar[hidden], .draw-hint[hidden] { display: none; }
+.db { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-weight: 600; font-size: 13px; line-height: 1.2; font-family: inherit; cursor: pointer; }
+.db:hover:not(:disabled) { border-color: var(--gold); }
+.db:disabled { opacity: .4; cursor: not-allowed; }
+.db.on { background: var(--gold); color: #1a1200; border-color: var(--gold); }
+.db-dot { width: 22px; height: 22px; padding: 0; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
+.db-dot.on { border-color: #fff; }
+.db-sep { width: 1px; height: 24px; background: var(--line); margin: 0 4px; }
+.draw-hint { position: absolute; left: 14px; bottom: 12px; z-index: 3; padding: 6px 10px; border-radius: 8px; background: rgba(11, 20, 36, .85); color: var(--muted); font-size: 12px; font-weight: 600; pointer-events: none; }
+#drawBtn.on { border-color: var(--gold); color: var(--gold); }
+@media (max-width: 640px) { .draw-bar { top: 6px; padding: 6px; gap: 4px; } .db { padding: 5px 8px; font-size: 12px; } .draw-hint { display: none; } }
