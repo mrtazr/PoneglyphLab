@@ -624,7 +624,7 @@ const EVENTS_DATA = {
             "leader": "Black Yamato (OP16-079)",
             "aka": "ヤマト 黒 Yamato"
           },
-          "videoId": "-QpE4iAWFPA",
+          "videoId": "6dT_Fc4v-lI",
           "end": 5550
         },
         {
@@ -640,7 +640,7 @@ const EVENTS_DATA = {
             "leader": "Purple Enel (OP15-058)",
             "aka": "エネル 紫"
           },
-          "videoId": "-QpE4iAWFPA",
+          "videoId": "6dT_Fc4v-lI",
           "end": 11250
         },
         {
@@ -656,7 +656,7 @@ const EVENTS_DATA = {
             "leader": "Yellow-Purple Nico Robin (OP09-062)",
             "aka": "ロビン ニコ・ロビン 黄紫"
           },
-          "videoId": "-QpE4iAWFPA",
+          "videoId": "6dT_Fc4v-lI",
           "end": 17315
         },
         {
@@ -672,7 +672,7 @@ const EVENTS_DATA = {
             "leader": "Green Mihawk (OP14-020)",
             "aka": "ミホーク 緑"
           },
-          "videoId": "-QpE4iAWFPA",
+          "videoId": "6dT_Fc4v-lI",
           "end": 22289
         },
         {
@@ -688,7 +688,7 @@ const EVENTS_DATA = {
             "leader": "Purple Enel (OP15-058)",
             "aka": "エネル 紫"
           },
-          "videoId": "-QpE4iAWFPA"
+          "videoId": "6dT_Fc4v-lI"
         },
         {
           "id": "l17",
