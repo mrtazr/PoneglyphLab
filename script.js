@@ -1324,10 +1324,25 @@ const EVENTS_DATA = {
       mk("div", { className: "stat-num", textContent: String(num) }), mk("div", { className: "stat-label", textContent: label }));
     els.stats.replaceChildren(tile(allMatches.length, "Matches"), tile(events.length, "Events"), tile(counts.size, "Leaders played"));
   }
+  function renderCrumbs() {
+    const box = $("crumbs");
+    if (!box) return;
+    const home = mk("button", { type: "button", textContent: "Poneglyph Lab" });
+    home.addEventListener("click", showHome);
+    const sep = () => mk("span", { className: "sep", textContent: "›" });
+    if (view === "watch" && events.length) {
+      const m = curMatch();
+      box.replaceChildren(home, sep(), mk("span", { className: "mid", textContent: curEvent().name }), sep(),
+        mk("span", { className: "cur", textContent: m.round || `Match ${mIdx + 1}` }));
+    } else {
+      box.replaceChildren(home, sep(), mk("span", { className: "cur", textContent: "Overview" }));
+    }
+  }
   function setView(v) {
     view = v;
     els.homeView.hidden = v !== "home";
     els.watchView.hidden = v !== "watch";
+    renderCrumbs();
   }
   function showHome() {
     drawOff(false);
