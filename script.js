@@ -677,7 +677,7 @@ const EVENTS_DATA = {
         },
         {
           "id": "l16",
-          "round": "Finals Part 1",
+          "round": "Finals",
           "start": 22289,
           "winner": null,
           "p1": {
@@ -689,21 +689,6 @@ const EVENTS_DATA = {
             "aka": "エネル 紫"
           },
           "videoId": "6dT_Fc4v-lI"
-        },
-        {
-          "id": "l17",
-          "round": "Finals Part 2",
-          "start": 99,
-          "winner": null,
-          "p1": {
-            "leader": "Green Mihawk (OP14-020)",
-            "aka": "ミホーク 緑"
-          },
-          "p2": {
-            "leader": "Purple Enel (OP15-058)",
-            "aka": "エネル 紫"
-          },
-          "videoId": "h3ERBO-IUnc"
         }
       ]
     },
